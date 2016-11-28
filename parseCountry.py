@@ -4,7 +4,7 @@ import pdb
 
 from Mongo.helper import HashtagMDB
 
-with open('/home/quique/git/twitter-graph/countriesToCities.json') as data_file:
+with open('countriesToCities.json') as data_file:
     data = json.load(data_file)
 conn=HashtagMDB()
 errors=[]
