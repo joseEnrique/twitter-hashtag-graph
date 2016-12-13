@@ -1,10 +1,9 @@
-import tweepy
+import sys
+import pdb
+sys.path.append("../")
 from tweepy import OAuthHandler
 from tweepy import Stream
 from tweepy.streaming import StreamListener
-import pdb
-import goslate
-
 from Mongo.helper import HashtagMDB
 from jsonTransform import *
 
@@ -16,16 +15,13 @@ auth = OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_secret)
 
 
-class MyListener(StreamListener):
+class Listener(StreamListener):
     def on_data(self, data):
 
-
         #print (data)
-        jsondata=json_loads_byteified(data)
-        self.get_tweet(jsondata)
+        jsondata = json_loads_byteified(data)
         DB = HashtagMDB()
         DB.insertHashtag(jsondata)
-
         #print (jsondata)
         #print "*****************************************"
 
@@ -35,6 +31,14 @@ class MyListener(StreamListener):
 
 
 
-GEOBOX_GERMANY =  [-180,-90,180,90]
-twitter_stream = Stream(auth, MyListener())
-twitter_stream.filter(track=["#BIGBellTest","#TheBIGBelltest","BIGBellTest","TheBIGBelltest"])
+class initStream(object):
+    def __init__(self, lista):
+        self.listterms=lista
+
+    def run(self):
+        twitter_stream = Stream(auth, Listener())
+        twitter_stream.filter(track=self.listterms)
+
+if __name__ == '__main__':
+    listarg = sys.argv[1:]
+    initStream(listarg).run()
