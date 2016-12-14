@@ -27,6 +27,22 @@ class HashtagMDB(object):
     def getPID(self,collection,name):
         return self._getCollection(collection=collection).find_one_and_delete({"name":name})
 
+    def getAgregatefrompipeline(self,collection,pipeline):
+        """
+        :param collection: For match
+        :param pipeline: any pipeline
+        :return: List
+        """
+        return list(self._getCollection(collection).aggregate(pipeline=pipeline))
+
+    def gettweets(self, collection=None, zone = None):
+        search = self._getCollection(collection).find(
+            {
+                'user.time_zone': zone,
+            }
+        )
+        return search
+
 
 
 

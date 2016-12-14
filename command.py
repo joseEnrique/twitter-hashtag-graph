@@ -3,7 +3,7 @@ import sys
 import os
 
 from Mongo.helper import HashtagMDB
-from twitter import initStream
+
 import pdb
 
 
