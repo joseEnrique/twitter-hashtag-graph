@@ -14,14 +14,24 @@ class dataFilter(object):
         dataset = conn.getAgregatefrompipeline(collection="small", pipeline=pipeline)
         for element in dataset:
             insert = dict()
-            insert['time_zone']=element['_id']
-            insert['']
+            insert['time_zone']=element['_id'] if not element else "None"
+            insert['nodes']=[]
             zone = element['_id'] if not element else None
-            pdb.set_trace()
-            cur = conn.gettweets("small",zone)
+            cur = conn.gettweets("big",zone)
             for tweet in cur:
-                id =tweet['user']['id_str']
-                pdb.set_trace()
+                try:
+                    idt = tweet['user']['id_str']
+                    photo = tweet['user']['profile_image_url_https']
+                    newdict = {
+                        "id": idt,
+                        "image": photo
+                    }
+                    insert['nodes'].append(newdict)
+                    print tweet
+                except:
+                    pass
+            conn.insertGeneric(collection="prueba_"+"processed",data=insert)
+
 
 
 
