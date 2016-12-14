@@ -21,6 +21,12 @@ class HashtagMDB(object):
     def insertCity(self, data):
         self._getCollection(collection="city").insert(dict(data))
 
+    def insertGeneric(self,collection,data):
+        self._getCollection(collection=collection).insert(dict(data))
+
+    def getPID(self,collection,name):
+        return self._getCollection(collection=collection).find_one_and_delete({"name":name})
+
 
 
 
