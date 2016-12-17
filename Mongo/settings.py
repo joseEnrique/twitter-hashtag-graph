@@ -7,7 +7,7 @@ config = {
     # MONGO CONFIG
     "MONGO_USERNAME": None,
     "MONGO_PASSWORD": None,
-    "MONGO_HOST": "localhost",
+    "MONGO_HOST": "test.opileak.es",
     "MONGO_PORT": 27017,
     "MONGO_DB_NAME": "twitter",
     # Other config follows
@@ -44,4 +44,3 @@ class MongoConfig(Config):
     @property
     def password(self):
         return self.get_property('MONGO_PASSWORD')
-
