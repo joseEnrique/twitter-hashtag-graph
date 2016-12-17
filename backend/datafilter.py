@@ -11,12 +11,19 @@ class dataFilter(object):
     def run(self):
         conn = HashtagMDB()
         pipeline = [{ '$group': { '_id': '$user.time_zone' } } ]
-        dataset = conn.getAgregatefrompipeline(collection="small", pipeline=pipeline)
+        dataset = conn.getAgregatefrompipeline(collection="big", pipeline=pipeline)
         for element in dataset:
             insert = dict()
-            insert['time_zone']=element['_id'] if not element else "None"
+            zone = element['_id'] if element is not None else "Null"
+            try:
+                zone = zone.replace("/","_").replace(" ","").replace(".","").lower()
+            except:
+                pdb.set_trace()
+            insert['time_zone']=zone
             insert['nodes']=[]
-            zone = element['_id'] if not element else None
+
+            print zone
+
             cur = conn.gettweets("big",zone)
             for tweet in cur:
                 try:
@@ -27,10 +34,10 @@ class dataFilter(object):
                         "image": photo
                     }
                     insert['nodes'].append(newdict)
-                    print tweet
+                    #print tweet
                 except:
                     pass
-            conn.insertGeneric(collection="prueba_"+"processed",data=insert)
+            conn.insertGeneric(collection="small_"+"processed",data=insert)
 
 
 
