@@ -1,29 +1,13 @@
-var express  = require("express"),
-    app      = express(),
-    http     = require("http"),
-    server   = http.createServer(app),
-    mongoose = require('mongoose');
+var express = require('express');
+var bodyParser = require('body-parser');
+var morgan = require('morgan');
+var wine = require('./routes/wines');
+var app = express();
+app.use(morgan('dev')); /* 'default','short','tiny','dev' */
+app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.json());
 
-app.configure(function () {
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(app.router);
-});
+app.get('/wines', wine.findAll);
 
-app.get('/', function(req, res) {
-  res.send("Hello world!");
-});
-
-//routes = require('./routes/tvshows')(app);
-
-mongoose.connect('mongodb://localhost/twitter', function(err, res) {
-	if(err) {
-		console.log('ERROR: connecting to Database. ' + err);
-	} else {
-		console.log('Connected to Database');
-	}
-});
-
-server.listen(3000, function() {
-  console.log("Node server running on http://localhost:3000");
-});
+app.listen(3000);
+console.log('Listening on port 3000...');
