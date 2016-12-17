@@ -9,10 +9,10 @@ db = new Db('twitter', server);
 
 db.open(function(err, db) {
     if(!err) {
-        console.log("Connected to 'winedb' database");
+        console.log("Connected database");
         db.collection('small', {strict:true}, function(err, collection) {
             if (err) {
-                console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
+                console.log("The collection doesn't exist. Creating it with sample data...");
                 populateDB();
             }
         });
@@ -20,8 +20,17 @@ db.open(function(err, db) {
 });
 
 exports.findAll = function(req, res) {
-    db.collection('small', function(err, collection) {
+    db.collection(req.params.collection, function(err, collection) {
         collection.find().toArray(function(err, items) {
+            res.send(items);
+        });
+    });
+};
+
+exports.findByZone = function(req, res) {
+    db.collection(req.params.collection, function(err, collection) {
+        collection.find({time_zone:req.params.node}).toArray(function(err, items) {
+            console.log(req.params.zone);
             res.send(items);
         });
     });
