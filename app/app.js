@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var zones = require('./routes/zones');
+var request = require('request');
 var app = express();
 
 app.set('views', __dirname);
@@ -14,18 +15,69 @@ app.use(express.static('views'));
 app.use(morgan('dev')); /* 'default','short','tiny','dev' */
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json());
+// MONGO
+var mongo = require('mongodb');
 
+var Server = mongo.Server,
+    Db = mongo.Db,
+    BSON = mongo.BSONPure;
 
+var server = new Server('localhost', 27017, {auto_reconnect: true});
+db = new Db('twitter', server);
 
 
 
 app.get('/', function(request, response) {
 
   response.render('views/index.html', {
-    titulo: 'Hola, desde el controlador de home'
+    titulo: 'SysGraph'
   });
 
 });
+
+db.open(function(err, db) {
+    if(!err) {
+        console.log("Connected database");
+        db.collection('big_processed', {strict:true}, function(err, collection) {
+            if (err) {
+                console.log("The collection doesn't exist. Creating it with sample data...");
+                populateDB();
+            }
+        });
+    }
+});
+
+//************************************************************************
+
+
+
+app.get('/list', function(request, response) {
+
+
+	db.collection("graphs", function(err, collection) {
+	        collection.find({}).toArray(function(err, items) {
+	              response.render('views/list.html', {
+	    				item: items
+	  				});
+	        });
+	    });
+
+});
+
+
+
+app.get('/graph/:collection', function(request, response) {
+
+ 		console.log(request.params.collection)
+		  response.render('views/graphImages.html', {
+		    titulo: 'Sysgraph'
+		  });
+	
+
+});
+
+
+
 
 
 app.get('/grafoprueba', function(request, response) {
