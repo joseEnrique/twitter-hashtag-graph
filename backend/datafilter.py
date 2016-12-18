@@ -37,7 +37,7 @@ class dataFilter(object):
                     #print tweet
                 except:
                     pass
-            conn.insertGeneric(collection="small_"+"processed",data=insert)
+            conn.insertGeneric(collection="big_"+"processed",data=insert)
 
 
 
