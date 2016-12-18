@@ -72,7 +72,7 @@ app.get('/graph/:collection', function(request, response) {
 		  response.render('views/graphImages.html', {
 		    titulo: 'Sysgraph'
 		  });
-	
+
 
 });
 
@@ -83,7 +83,7 @@ app.get('/stats/:collection', function(request, response) {
 		  response.render('views/graphImages.html', {
 		    titulo: 'Sysgraph'
 		  });
-	
+
 
 });
 
@@ -91,9 +91,9 @@ app.get('/stats/:collection', function(request, response) {
 
 
 
-app.get('/grafoprueba', function(request, response) {
+app.get('/api/v1/grafoprueba', function(request, response) {
 
-  response.render('views/grafo.html');
+  response.render('views/graphImages.html');
 
 });
 //**********
