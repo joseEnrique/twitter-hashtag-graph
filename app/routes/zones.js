@@ -10,7 +10,7 @@ db = new Db('twitter', server);
 db.open(function(err, db) {
     if(!err) {
         console.log("Connected database");
-        db.collection('big_processed', {strict:true}, function(err, collection) {
+        db.collection('small', {strict:true}, function(err, collection) {
             if (err) {
                 console.log("The collection doesn't exist. Creating it with sample data...");
                 populateDB();
@@ -23,7 +23,7 @@ exports.findAll = function(req, res) {
     db.collection(req.params.collection, function(err, collec) {
         console.log(collec)
         collec.find().toArray(function(err, items) {
-            
+
 
             res.send(items);
         });
