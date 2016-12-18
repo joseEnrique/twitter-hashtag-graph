@@ -44,7 +44,7 @@ class Command(object):
     elif args.execute:
         listarg = parser.parse_args().execute
 
-        os.system("python twitter.py "+name+" "+joinlist(listarg)+ " & echo $! > pid.tmp")
+        os.system("python ../twitter.py "+name+" "+joinlist(listarg)+ " & echo $! > pid.tmp")
 
         data = readPID()[0].rstrip('\n')
         dict = {"name":name,

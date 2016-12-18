@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var zones = require('./routes/zones');
+var control = require('./command');
 var app = express();
 
 app.set('views', __dirname);
@@ -49,7 +50,7 @@ db.open(function(err, db) {
 //************************************************************************
 
 
-
+// WEBAPP
 app.get('/list', function(request, response) {
 
 
@@ -95,6 +96,20 @@ app.get('/grafoprueba', function(request, response) {
   response.render('views/grafo.html');
 
 });
+//**********
+
+
+
+
+
+//CONTROLLER
+
+app.get('/api/v1/start', control.startCommand);
+app.get('/api/v1/stop', control.deleteCommand);
+
+
+//API
+
 
 
 
