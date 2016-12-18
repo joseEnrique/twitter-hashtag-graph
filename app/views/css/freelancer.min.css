@@ -65,3 +65,28 @@
   background: transparent;
   outline-width: 0px;
 }
+
+
+/* Botonaso de inicio */
+svg {
+  margin-top: 40vh;
+  -webkit-font-smoothing: antialiased;
+  width: 400px;
+}
+
+svg:hover #rect {
+  stroke-dasharray: 1700, 1700;
+  -webkit-animation: dash 0.5s linear;
+}
+
+@-webkit-keyframes dash {
+  from {
+    stroke-dasharray: 0, 1700;
+  }
+  to {
+    stroke-dasharray: 1700, 1700;
+  }
+}
+#rect {
+  stroke-dasharray: 0, 1700;
+}
