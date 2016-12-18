@@ -28,6 +28,13 @@ app.get('/', function(request, response) {
 });
 
 
+app.get('/grafoprueba', function(request, response) {
+
+  response.render('views/grafo.html');
+
+});
+
+
 
 app.get('/api/v1/:collection/zones', zones.findAll);
 app.get('/api/v1/:collection/zones/:node', zones.findByZone);
