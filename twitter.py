@@ -16,15 +16,14 @@ auth.set_access_token(access_token, access_secret)
 
 
 class Listener(StreamListener):
+    def __init__(self, db):
+        self.db = db
+
     def on_data(self, data):
 
-        #print (data)
         jsondata = json_loads_byteified(data)
         DB = HashtagMDB()
-        DB.insertHashtag(jsondata)
-        #print (jsondata)
-        #print "*****************************************"
-
+        DB.insertHashtag(collection=self.db, data=jsondata)
         def on_error(self, status):
             print(status)
             return True
@@ -32,13 +31,16 @@ class Listener(StreamListener):
 
 
 class initStream(object):
-    def __init__(self, lista):
+    def __init__(self, name,lista):
+        self.name=name
         self.listterms=lista
 
     def run(self):
-        twitter_stream = Stream(auth, Listener())
+        twitter_stream = Stream(auth, Listener(self.name))
         twitter_stream.filter(track=self.listterms)
 
 if __name__ == '__main__':
-    listarg = sys.argv[1:]
-    initStream(listarg).run()
+    name = sys.argv[1]
+    listarg = sys.argv[2:]
+    print name
+    initStream(name,listarg).run()

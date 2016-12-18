@@ -37,7 +37,7 @@ app.get('/', function(request, response) {
 db.open(function(err, db) {
     if(!err) {
         console.log("Connected database");
-        db.collection('big_processed', {strict:true}, function(err, collection) {
+        db.collection('graphs', {strict:true}, function(err, collection) {
             if (err) {
                 console.log("The collection doesn't exist. Creating it with sample data...");
                 populateDB();
@@ -66,6 +66,17 @@ app.get('/list', function(request, response) {
 
 
 app.get('/graph/:collection', function(request, response) {
+
+ 		console.log(request.params.collection)
+		  response.render('views/graphImages.html', {
+		    titulo: 'Sysgraph'
+		  });
+	
+
+});
+
+
+app.get('/stats/:collection', function(request, response) {
 
  		console.log(request.params.collection)
 		  response.render('views/graphImages.html', {

@@ -6,6 +6,8 @@ from Mongo.helper import HashtagMDB
 
 import pdb
 
+from backend.datafilter import dataFilter
+
 
 def joinlist(list):
     return " ".join(list)
@@ -33,15 +35,29 @@ class Command(object):
         print pid['pid']
         os.system("kill -9 " + pid['pid'])
         print("Stopped!")
+        conn.updatestatus(collection="graphs",name=name,status="processing")
+        # Procesing
+        dataFilter(name).run()
+        conn.updatestatus(collection="graphs", name=name, status="done")
+
+
     elif args.execute:
         listarg = parser.parse_args().execute
 
-        os.system("python twitter.py  "+joinlist(listarg)+ " & echo $! > pid.tmp")
+        os.system("python twitter.py "+name+" "+joinlist(listarg)+ " & echo $! > pid.tmp")
 
         data = readPID()[0].rstrip('\n')
         dict = {"name":name,
                 "pid":data}
         conn.insertGeneric(collection="pid",data=dict)
+
+        conndict = {
+            "name": name,
+            "status" : "run"
+
+
+        }
+        conn.insertGeneric(collection="graphs", data=conndict)
 
         #print os.system("echo $!")
 

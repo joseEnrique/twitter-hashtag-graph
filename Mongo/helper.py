@@ -15,8 +15,8 @@ class HashtagMDB(object):
     def searchAll(self,collection=None):
         return [ element for element in self._getCollection(collection).find()]
 
-    def insertHashtag(self,data):
-        self._getCollection(collection="hashtag").insert(dict(data))
+    def insertHashtag(self,collection,data):
+        self._getCollection(collection=collection).insert(dict(data))
 
     def insertCity(self, data):
         self._getCollection(collection="city").insert(dict(data))
@@ -42,6 +42,18 @@ class HashtagMDB(object):
             }
         )
         return search
+
+    def updatestatus(self,collection,name,status):
+        coll = self._getCollection(collection=collection)
+        coll.update_one({
+                'name': name
+
+        },{
+            '$set': {
+            'status': status
+                    }
+            ,}
+        )
 
 
 
