@@ -28,7 +28,8 @@ exports.startCommand = function(req, res) {
 
 	});
 
-	res.sendStatus(200)
+	
+	res.redirect(200,'/list');
 
 
 };
@@ -38,8 +39,8 @@ exports.deleteCommand = function(req, res) {
 	child = exec("python ../command.py --name "+req.params.name+" --stop ", function (error, stdout, stderr) {
 	  	console.log("stop")
 	});
-	
-	res.sendStatus(200)
+	res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+	res.redirect(200,'/list');
 
 
 };
