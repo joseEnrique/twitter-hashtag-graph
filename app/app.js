@@ -38,7 +38,7 @@ app.get('/', function(request, response) {
 db.open(function(err, db) {
     if(!err) {
         console.log("Connected database");
-        db.collection('graphs', {strict:true}, function(err, collection) {
+        db.collection('pid', {strict:true}, function(err, collection) {
             if (err) {
                 console.log("The collection doesn't exist. Creating it with sample data...");
                 populateDB();
@@ -63,6 +63,15 @@ app.get('/list', function(request, response) {
 	    });
 
 });
+
+app.get('/create', function(request, response) {
+
+
+	response.render('views/create.html');
+	    
+	  
+});
+
 
 
 
@@ -104,8 +113,8 @@ app.get('/api/v1/grafoprueba', function(request, response) {
 
 //CONTROLLER
 
-app.get('/api/v1/start', control.startCommand);
-app.get('/api/v1/stop', control.deleteCommand);
+app.post('/api/v1/start', control.startCommand);
+app.get('/api/v1/stop/:name', control.deleteCommand);
 
 
 //API

@@ -18,9 +18,12 @@ exec("ls -la ../", puts);
 
 */
 exports.startCommand = function(req, res) {
-	
-	child = exec("python ../command.py --name node1 --execute TwitterEsModa ", function (error,stdout,stderr){
-		console.log("Start")
+	name = req.body.name
+	hashtag = req.body.hashtags
+	stringcommand = "python ../command.py --name "+ name +" --execute "+hashtag
+	console.log(stringcommand)
+	child = exec(stringcommand, function (error,stdout,stderr){
+		console.log(stderr)
 		 
 
 	});
@@ -40,3 +43,7 @@ exports.deleteCommand = function(req, res) {
 
 
 };
+
+
+
+
