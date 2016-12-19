@@ -35,10 +35,10 @@ exports.startCommand = function(req, res) {
 
 exports.deleteCommand = function(req, res) {
 
-	child = exec("python ../command.py --name node1 --stop ", function (error, stdout, stderr) {
+	child = exec("python ../command.py --name "+req.params.name+" --stop ", function (error, stdout, stderr) {
 	  	console.log("stop")
 	});
-	console.log("sasas")
+	
 	res.sendStatus(200)
 
 

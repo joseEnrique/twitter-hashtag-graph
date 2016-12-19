@@ -114,7 +114,7 @@ app.get('/api/v1/grafoprueba', function(request, response) {
 //CONTROLLER
 
 app.post('/api/v1/start', control.startCommand);
-app.get('/api/v1/stop/:name', control.deleteCommand);
+app.post('/api/v1/stop/:name', control.deleteCommand);
 
 
 //API
