@@ -10,7 +10,7 @@ db = new Db('twitter', server);
 db.open(function(err, db) {
     if(!err) {
         console.log("Connected database");
-        db.collection('small', {strict:true}, function(err, collection) {
+        db.collection('pid', {strict:true}, function(err, collection) {
             if (err) {
                 console.log("The collection doesn't exist. Creating it with sample data...");
                 populateDB();
@@ -20,7 +20,8 @@ db.open(function(err, db) {
 });
 
 exports.findAll = function(req, res) {
-    db.collection(req.params.collection, function(err, collec) {
+    console.log(req.params.collection)
+    db.collection(req.params.collection+"_processed", function(err, collec) {
         console.log(collec)
         collec.find().toArray(function(err, items) {
 
@@ -31,7 +32,8 @@ exports.findAll = function(req, res) {
 };
 
 exports.findByZone = function(req, res) {
-    db.collection(req.params.collection, function(err, collection) {
+    console.log(req.params.collection)
+    db.collection(req.params.collection+"_processed", function(err, collection) {
         collection.find({time_zone:req.params.node}).toArray(function(err, items) {
             console.log(req.params.zone);
             res.send(items);
