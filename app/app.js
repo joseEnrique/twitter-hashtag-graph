@@ -78,8 +78,9 @@ app.get('/create', function(request, response) {
 app.get('/graph/:collection', function(request, response) {
 
  		console.log(request.params.collection)
-		  response.render('views/graphImages.html', {
-		    titulo: 'Sysgraph'
+		  response.render('views/byzone.html', {
+		    titulo: 'Sysgraph',
+            name: request.params.collection
 		  });
 
 
@@ -87,9 +88,7 @@ app.get('/graph/:collection', function(request, response) {
 
 
 app.get('/stats/:collection', function(request, response) {
-
- 		console.log(request.params.collection)
-		  response.render('views/graphImages.html', {
+		  response.render('views/graph.html', {
 		    titulo: 'Sysgraph'
 		  });
 
@@ -106,9 +105,10 @@ app.get('/stats/:collection', function(request, response) {
 
 //});
 //**********
+
 app.get('/api/v1/porzonaspruebas', function(request, response) {
 
-  response.render('views/byzones.html');
+  response.render('views/byzone.html');
 
 });
 
@@ -118,7 +118,7 @@ app.get('/api/v1/porzonaspruebas', function(request, response) {
 //CONTROLLER
 
 app.post('/api/v1/start', control.startCommand);
-app.post('/api/v1/stop/:name', control.deleteCommand);
+app.get('/api/v1/stop/:name', control.deleteCommand);
 
 
 //API

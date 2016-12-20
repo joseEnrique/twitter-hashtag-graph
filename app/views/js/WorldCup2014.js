@@ -1,4 +1,4 @@
-var nodes = [];
+/*var nodes = [];
 var edges = [];
 
 $( document ).ready(function() {
@@ -59,3 +59,4 @@ request.always(function(jqXHR, status, statusText) {
 });
 
 console.log(nodes);
+*/

@@ -29,7 +29,7 @@ exports.startCommand = function(req, res) {
 	});
 
 	
-	res.redirect(200,'/list');
+	res.redirect('/list');
 
 
 };
@@ -40,7 +40,7 @@ exports.deleteCommand = function(req, res) {
 	  	console.log("stop")
 	});
 	res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
-	res.redirect(200,'/list');
+	res.redirect('/list');
 
 
 };

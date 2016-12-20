@@ -87,14 +87,26 @@
                 <td><%=  item.name %></td> 
                 <td><%=  item.status %></td>
                 <td>
+                <%if (item.status == "run") { %>
+
+                <input type="submit" value="Stop"  
+                        onclick="window.location='/api/v1/stop/<%=  item.name %>';" />
+                    
+                <input type="submit" value="Go to stats"  
+                        onclick="window.location='/stats/<%=  item.name %>';" />
+                    
+                <% } else{ %>
+                
                 <input type="submit" value="Go to graph"  
                         onclick="window.location='/graph/<%=  item.name %>';" />
                     
-                <input type="submit" value="Go to stat"  
+                <input type="submit" value="Go to stats"  
                         onclick="window.location='/stats/<%=  item.name %>';" />
                 <input type="submit" value="Get graph gephi"  
                         onclick="window.location='/gephi/<%=  item.name %>';" />
                     
+                
+                <% } %>
                 </td>      
 
             </tr>     
