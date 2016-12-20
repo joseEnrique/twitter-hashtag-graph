@@ -20,61 +20,77 @@
   <link href="/css/vis-network.min.css" rel="stylesheet" type="text/css" />
 
   <script type="text/javascript">
-    var DIR = 'img/soft-scraps-icons/';
 
     var nodes = [];
-    var edges = null;
+    var edges = [];
     var network = null;
 
     $( document ).ready(function() {
 
     var request = $.ajax({
-      url: '/api/v1/small/zones/Tehran',
+      url: '/api/v1/small/zones',
       type:"GET",
       contentType: "application/json",
     });
 
     request.done(function(data) {
+
+//      console.log(data);
       $.each(data, function(index, zone) {
-        $.each(zone.nodes, function(index, tweet) {
-          nodes.push({id: index + 1,  shape: 'circularImage', image: tweet.image});
+        //console.log(zone.time_zone);
+        var nodes = [];
+        nodes.push({id: 0,  shape: 'square', image: null});
+
+        var request2 = $.ajax({
+          url: '/api/v1/small/zones/'+zone.time_zone,
+//          url: '/api/v1/small/zones/Tehran',
+          type:"GET",
+          contentType: "application/json",
         });
+
+        request2.done(function(zone) {
+//          console.log(zone[0].time_zone);
+//          console.log(zone[0].nodes);
+
+          var edges = [];
+          $.each(zone[0].nodes, function(index, tweet) {
+
+            nodes.push({id: index + 1,  shape: 'circularImage', image: tweet.image});
+            edges.push({from: 0,  to: index + 1});
+
+          });
+
+//          console.log(edges);
+//          console.log(nodes);
+          // create a network
+
+          var data = {
+            nodes: nodes,
+            edges: edges
+          };
+          var options = {
+            nodes: {
+              borderWidth:4,
+              size:30,
+    	      color: {
+                border: '#222222',
+                background: '#666666'
+              },
+              font:{color:'#eeeeee'}
+            },
+            edges: {
+              color: 'lightgray'
+            }
+          };
+          network = new vis.Network(document.getElementById('mynetwork'), data, options);
+        });
+
+        request2.always(function(jqXHR, status, statusText) {
+          console.log(request2.status);
+        });
+
       });
 
-        nodes.push({id: 0,  shape: 'square', image: null})
-        edges = [
-          {from: 0, to: 1},
-          {from: 0, to: 2},
-          {from: 0, to: 3},
-          {from: 0, to: 4},
-          {from: 0, to: 5},
-          {from: 0, to: 10},
-          {from: 0, to: 6},
-          {from: 0, to: 7},
-          {from: 0, to: 4}
-        ];
-        console.log(nodes);
-        // create a network
-        var container = document.getElementById('mynetwork');
-        var data = {
-          nodes: nodes,
-          edges: edges
-        };
-        var options = {
-          nodes: {
-            borderWidth:4,
-            size:30,
-  	      color: {
-              border: '#222222',
-              background: '#666666'
-            },
-            font:{color:'#eeeeee'}
-          },
-          edges: {
-            color: 'lightgray'
-          }
-        };
-        network = new vis.Network(container, data, options);
 
 
     });

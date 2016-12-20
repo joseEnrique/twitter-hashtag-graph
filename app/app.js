@@ -68,8 +68,8 @@ app.get('/create', function(request, response) {
 
 
 	response.render('views/create.html');
-	    
-	  
+
+
 });
 
 
@@ -100,13 +100,17 @@ app.get('/stats/:collection', function(request, response) {
 
 
 
-app.get('/api/v1/grafoprueba', function(request, response) {
+//app.get('/api/v1/grafoprueba', function(request, response) {
 
-  response.render('views/graphImages.html');
+//  response.render('views/graphImages.html');
+
+//});
+//**********
+app.get('/api/v1/porzonaspruebas', function(request, response) {
+
+  response.render('views/byzones.html');
 
 });
-//**********
-
 
 
 
