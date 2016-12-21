@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Twitter Hashtag Graph</title>
+    <title>Twitter Hashtag Graph v.Alpha</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -88,20 +88,12 @@
         <div class="container">
         <div clas="wrap">
 
-            <article class="material-card">
-            <header style="background: #FAFAFA">
-                <figure class="material-card-icon capamerica">
-                </figure>
-            <h1 class="material-card-title" style="color: #2aa9e0;font-weight: bold;">NOMBRE</h1>
 
-            <div class="material-card-info">
-                <time id='total'></time>
-            </div>
-            </header>
-            <div class="material-card-content">
-
-            </div>
-
+                <b> Total:</b> <time id='total'></time>
+                <b>Most active user:</b> <time id='user'></time>
+                <b> Tweets by zone:</b> <time id='zone'></time> 
+                
+            
       </article>
 
         </div>
@@ -114,19 +106,54 @@
       $( document ).ready(function() {
 
         var request = $.ajax({
-          url: '/api/v1/stats/total/wintersolstice',
+          url: '/api/v1/stats/totalbyzone/<%=  name %>',
           type:"GET",
           contentType: "application/json",
         });
 
         request.done(function(data) {
-          console.log(data);
-          $('#total').text(data);
+              for(x in data){
+                  $('#zone').append("<b>"+data[x]._id+"</b> : " + data[x].count +"<br>");
+          }
+                       
 
-
-        request.always(function(jqXHR, status, statusText) {
-          console.log(request.status);
+        var request = $.ajax({
+          url: '/api/v1/stats/total/<%=  name %>',
+          type:"GET",
+          contentType: "application/json",
         });
+
+        request.done(function(data) {
+        $('#total').html(data+" Tweets <br>");
+
+
+
+
+        });
+                       
+      
+
+
+        var request = $.ajax({
+          url: '/api/v1/stats/maxusers/<%=  name %>',
+          type:"GET",
+          contentType: "application/json",
+        });
+
+        request.done(function(data) {
+        $('#user').html("@"+data._id+" : <b>number of Tweets : </b>" + data.count +"<br>");
+
+
+
+
+        });
+                  
+    
+
+
+        });
+
+
 
       });
     </script>
@@ -144,16 +171,9 @@
 
     <!-- Contact Form JavaScript -->
     <script src="/js/jqBootstrapValidation.js"></script>
-    <script src="/js/contact_me.js"></script>
-
+    
     <!-- Theme JavaScript -->
     <script src="/js/freelancer.min.js"></script>
-
-    <!-- Grafo -->
-    <script src="/js/vis.js"></script>
-    <script src="/js/WorldCup2014.js"></script>
-    <script src="/js/visGrafo.js"></script>
-    <script src="/js/form.js"></script>
 
 
 

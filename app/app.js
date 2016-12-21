@@ -86,14 +86,10 @@ app.get('/graph/:collection', function(request, response) {
 
 app.get('/stats/:collection', function(request, response) {
 
-  db.collection(request.params.collection, function(err, collection) {
-    console.log(collection);
-	        collection.find({}).toArray(function(err, items) {
-	              response.render('views/stats.html', {
-	    				item: items
-	  				});
-	        });
-	    });
+   response.render('views/stats.html', {
+    titulo: 'SysGraph',
+    name : request.params.collection
+  });
 
 });
 

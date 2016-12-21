@@ -1,6 +1,6 @@
 {
-  "name": "wine-cellar",
-  "description": "Wine Cellar Application",
+  "name": "hashtag-graph",
+  "description": "Hashtag Graph",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
