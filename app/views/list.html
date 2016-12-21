@@ -97,10 +97,10 @@
         <% item.forEach(function(item,index){ %>
 
             <article class="material-card">
-            <header>
+            <header style="background: #FAFAFA">
                 <figure class="material-card-icon capamerica">
                 </figure>
-            <h1 class="material-card-title"><%=  item.name %></h1>
+            <h1 class="material-card-title" style="color: #2aa9e0;font-weight: bold;"><%=  item.name %></h1>
             <div class="material-card-action">
                 <a href="#">
             <i class="material-icons md-36">keyboard_arrow_right</i>
@@ -114,30 +114,30 @@
             <div class="material-card-content">
                 <%if (item.status == "run") { %>
 
-                <input type="submit" class="btn btn-primary" value="Stop"  
+                <input type="submit" class="btn btn-primary" style="margin-bottom: 5px" value="Stop"  
                         onclick="window.location='/api/v1/stop/<%=  item.name %>';" />
                     
-                <input type="submit" class="btn btn-primary" alue="Go to stats"  
+                <input type="submit" class="btn btn-primary" style="margin-bottom: 5px" value="Go to stats"  
                         onclick="window.location='/stats/<%=  item.name %>';" />
                     
                 <% } else{ %>
                 
-                <input type="submit" class="btn btn-primary" value="Go to graph"  
+                <input type="submit" class="btn btn-primary" style="margin-bottom: 5px" value="Go to graph"  
                         onclick="window.location='/graph/<%=  item.name %>';" />
                     
-                <input type="submit" class="btn btn-primary" value="Go to stats"  
+                <input type="submit" class="btn btn-primary" style="margin-bottom: 5px" value="Go to stats"  
                         onclick="window.location='/stats/<%=  item.name %>';" />
-                <input type="submit" class="btn btn-primary" value="Get graph gephi"  
+                <input type="submit" class="btn btn-primary" style="margin-bottom: 5px" value="Get graph gephi"  
                         onclick="window.location='/gephi/<%=  item.name %>';" />
                     
                 
                 <% } %>
             </div>     
    
-      
+      </article>
 
         <% }) %>
-        </article>
+        
         </div>
 
 
