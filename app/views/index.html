@@ -11,16 +11,27 @@
 
     <title>Twitter Hashtag Graph</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap Core CSS -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Theme CSS -->
-    <link href="css/freelancer.min.css" rel="stylesheet">
+  <!-- Material Design Lite CSS -->
+  <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
+  <!-- Material Design Lite Font Icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-    <!-- Custom Fonts -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  <!-- Theme CSS -->
+  <link href="/css/freelancer2.min.css" rel="stylesheet">
+  <link href="/css/vis-network.min.css" rel="stylesheet">
+
+  <!-- Custom Fonts -->
+  <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+
+  <script type="text/javascript" src="/js/vis.js"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+  <link href="/css/vis-network.min.css" rel="stylesheet" type="text/css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,12 +69,14 @@
                         <a href="/create">Create</a>
                     </li>
                     <li class="page-scroll" style="margin-left: 58px;">
-                        <div class="cntr">
-                            <div class="cntr-innr">
-                                <label class="search" for="inpt_search">
-                                <input id="inpt_search" type="text" />
-                            </div>
-                        </div>
+                        <div class="search">
+  <input type="checkbox" id="trigger" class="search__checkbox" />
+  <label class="search__label-init" for="trigger"></label>
+  <label class="search__label-active" for="trigger"></label>
+  <div class="search__border"></div>
+  <input type="text" class="search__input" />
+  <div class="search__close"></div>
+</div>
 
 
                     </li>
@@ -75,12 +88,19 @@
     </nav>
 
 
+    <style type="text/css">
+    
+    #mynetwork {
+      width: 800px;
+      height: 400px;
+      margin-left: 15em;
+    }
+  </style>
+
+
     <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="row">
                 <div class="col-lg-12">
-                   <a title="Follow @MikeMJHarris on Twitter" target="_blank" href="https://twitter.com/intent/follow?original_referer=http%3A%2F%2Flocalhost%3A8000%2Fposts%23&amp;region=follow_link&amp;screen_name=MikeMJHarris&amp;tw_p=followbutton">
+                   <a title="Mati Graph" target="_blank" href="/">
   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="-450 -100 600 200" version="1.0">
   <g transform="">
     <path fill="#2aa9e0"  d="m 100, -50 c -6.3097,2.79897 -13.09189,4.68982 -20.20852,5.54049 7.26413,-4.35454 12.84406,-11.24992 15.47067,-19.46675 -6.79934,4.03295 -14.3293,6.96055 -22.34461,8.53841 -6.41775,-6.83879 -15.56243,-11.111 -25.68298,-11.111 -19.43159,0 -35.18696,15.75365 -35.18696,35.18525 0,2.75781 0.31128,5.44359 0.91155,8.01875 -29.24344,-1.46723 -55.16995,-15.47582 -72.52461,-36.76396 -3.02879,5.19662 -4.76443,11.24048 -4.76443,17.6891 0,12.20777 6.21194,22.97747 15.65332,29.28716 -5.76773,-0.18265 -11.19331,-1.76565 -15.93716,-4.40083 -0.004,0.14663 -0.004,0.29412 -0.004,0.44248 0,17.04767 12.12889,31.26806 28.22555,34.50266 -2.95247,0.80436 -6.06101,1.23398 -9.26989,1.23398 -2.2673,0 -4.47114,-0.22124 -6.62011,-0.63114 4.47801,13.97857 17.47214,24.15143 32.86992,24.43441 -12.04227,9.43796 -27.21366,15.06335 -43.69965,15.06335 -2.84014,0 -5.64082,-0.16722 -8.39349,-0.49223 15.57186,9.98421 34.06703,15.8094 53.93768,15.8094 64.72024,0 100.11301,-53.61524 100.11301,-100.11387 0,-1.52554 -0.0343,-3.04251 -0.10204,-4.55261 6.87394,-4.95995 12.83891,-11.15646 17.55618,-18.21305 z" >
@@ -149,7 +169,7 @@
   <defs>
     <clipPath id="clipPath5">
       <text x="-250" y="50" style="font-size: 100px;" text-anchor="middle"  font-family="Verdana"  >
-        Graph
+        MATI
       </text>
     </clipPath>
   </defs>
@@ -166,12 +186,69 @@
 </svg>
 </a>
                     
-                </div>
+                
             </div>
-        </div>
-    </header>
+            <script type="text/javascript"> 
 
-    
+    var nodes = null;
+    var edges = null;
+    var network = null;
+
+    // Called when the Visualization API is loaded.
+    function draw() {
+      // create people.
+      // value corresponds with the age of the person
+      var DIR = '../img/indonesia/';
+      nodes = [
+        {id: 1,  shape: 'circularImage', image: 'https://pbs.twimg.com/profile_images/582846350254944256/GatwiMQM_400x400.jpg'},
+        {id: 2,  shape: 'circularImage', image: 'https://pbs.twimg.com/profile_images/797348182460076032/ZNx5nLCn_400x400.jpg'},
+        {id: 3,  shape: 'circularImage', image: 'https://pbs.twimg.com/profile_images/704998387230371841/EC5N-ajy_400x400.jpg'},
+        {id: 4,  shape: 'circularImage', image: 'https://pbs.twimg.com/profile_images/515047172069683200/ODu_YsN7_400x400.jpeg', label:"pictures by this guy!"},
+        {id: 5,  shape: 'square', image: DIR + '5.png'},
+      ];
+
+      // create connections between people
+      // value corresponds with the amount of contact between two people
+      edges = [
+        {from: 1, to: 5},
+        {from: 2, to: 5},
+        {from: 3, to: 5},
+        {from: 4, to: 5},
+      ];
+
+      // create a network
+      var container = document.getElementById('mynetwork');
+      var data = {
+        nodes: nodes,
+        edges: edges
+      };
+      var options = {
+        nodes: {
+          borderWidth:4,
+          size:30,
+        color: {
+            border: '#222222',
+            background: '#666666'
+          },
+          font:{color:'#black'}
+        },
+        edges: {
+          color: 'black'
+        }
+      };
+      network = new vis.Network(container, data, options);
+    }
+  </script>
+        
+        
+  <script src="../../googleAnalytics.js"></script>
+</head>
+
+<body onload="draw()">
+
+<div id="mynetwork"></div>
+
+
 
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>

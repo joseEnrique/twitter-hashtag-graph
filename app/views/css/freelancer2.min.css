@@ -462,7 +462,7 @@ table {
   outline: 1px solid black;
 }
 .material-card-icon.capamerica {
-  background-image: url(http://webresizer.com/session/lW6Bv3YxVb05mPq5xjRVl69d704GwB2C/result.jpg?1482345103.76116);}
+  background-image: url(http://webresizer.com/session/zy1mflEjjDILY0fc268uf0MtdMTCoCmm/result.jpg?1482332784.57827);}
 
 .material-card-icon i {
   display: inline-block;
@@ -594,12 +594,8 @@ table {
 
 /* Grafo */
 #mynetwork{
-    width: 850px;
+    width: 400px;
     height: 400px;
-    margin: 2em auto;
-    background: #fafafa;
-    border: 1px solid #ebebeb;
-    box-shadow: rgba(0,0,0,0.14902) 0px 1px 1px 0px,rgba(0,0,0,0.09804) 0px 1px 2px 0px;
 }
 
 
@@ -627,5 +623,3 @@ table {
 .select-style select:focus {
     outline: none;
 }
-
-
