@@ -37,7 +37,7 @@ class Command(object):
         print("Stopped!")
         conn.updatestatus(collection="graphs",name=name,status="processing")
         # Procesing
-        dataFilter(name).run()
+        dataFilter(name)
         conn.updatestatus(collection="graphs", name=name, status="done")
 
 

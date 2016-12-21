@@ -12,19 +12,16 @@ class dataFilter(object):
     def run(self):
         conn = HashtagMDB()
         pipeline = [{ '$group': { '_id': '$user.time_zone' } } ]
-        dataset = conn.getAgregatefrompipeline(collection=self.name, pipeline=pipeline)
-        for element in dataset:
+        datas = conn.getAgregatefrompipeline(collection=self.name, pipeline=pipeline)
+
+        for element in datas:
             insert = dict()
-            zone = element['_id'] if element is not None else "Null"
+            zone = element['_id']
             try:
                 insert['time_zone'] = zone.replace("/","_").replace(" ","").replace(".","").lower()
             except:
                 pass
-
             insert['nodes']=[]
-
-            print zone
-
             cur = conn.gettweets(self.name,zone)
             for tweet in cur:
                 try:
@@ -44,4 +41,4 @@ class dataFilter(object):
 
 
 if __name__ == '__main__':
-    dataFilter().run()
+    a = dataFilter("quique")
