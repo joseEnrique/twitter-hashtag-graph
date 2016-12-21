@@ -60,6 +60,7 @@ exports.maxuser = function(req,res){
     console.log(req.params.collection)
     db.collection(req.params.collection, function(err, collection) {
         collection.aggregate([ {'$unwind': '$user.screen_name'},{'$group': {'_id': '$user.screen_name', 'count': {'$sum': 1}}}, { $sort : { 'count' : -1}}]).toArray(function(err, items) {
+            console.log(items[0])
             res.send(items[0]);
         });
     });
