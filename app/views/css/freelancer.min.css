@@ -127,7 +127,7 @@ form {
 
 input {
   font-size: 18px;
-  padding: 0px 10px 10px 5px;
+  padding: 10px 5px 0px 0px;
   -webkit-appearance: none;
   display: block;
   background: #fafafa;
