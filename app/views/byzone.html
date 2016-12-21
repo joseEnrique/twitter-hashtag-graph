@@ -27,17 +27,6 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
-  <style type="text/css">
-    body {
-      font: 10pt arial;
-    }
-    #mynetwork {
-      width: 800px;
-      height: 800px;
-      border: 1px solid lightgray;
-      background-color:#333333;
-    }
-  </style>
 
   <script type="text/javascript" src="/js/vis.js"></script>
   <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
@@ -135,15 +124,11 @@
 
 <section class="success" id="about">
     <div class="container">
-    <div clas="wrap">
+    <div class="wrap">
 
-
-        <article class="material-card">
-          <div id="idZone">
-            <select id="opts"></select>
-          </div>
+          <select id="opts" class="form-control"></select>
+          
           <div id="mynetwork"></div>
-        </article>
     </div>
 
 
@@ -178,7 +163,7 @@
       $.each(zone[0].nodes, function(index, tweet) {
 
         nodes.push({id: index + 1, shape: 'circularImage', image: tweet.image});
-        edges.push({from: 0,  to: index + 1});
+        edges.push({from: 0,  to: index + 1, color: 'black'});
 
       });
 
@@ -198,10 +183,10 @@
             border: '#222222',
             background: '#666666'
           },
-          font:{color:'#eeeeee'}
+          font:{color: 'black'}
         },
         edges: {
-          color: 'lightgray'
+          color: 'blue'
         }
       };
       network = new vis.Network(document.getElementById('mynetwork'), data, options);
@@ -215,5 +200,17 @@
 
 };
 </script>
+
+
+
+
+
+<!-- Theme JavaScript -->
+<script src="js/select.js"></script>
+
+
+
 </body>
 </html>
+
+
