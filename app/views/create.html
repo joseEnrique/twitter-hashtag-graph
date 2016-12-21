@@ -41,7 +41,7 @@
 
 <body id="page-top" class="index">
 
-    <!-- Navigation -->
+     <!-- Navigation -->
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -49,23 +49,29 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="#page-top">Twitter Hashtag Graph</a>
+                <a class="navbar-brand" href="index.html">Hashtag Graph</a>
+                <img class="image-navbar" style="width: 50px;height: 50px;" src="https://upload.wikimedia.org/wikipedia/en/archive/9/9f/20161107041729!Twitter_bird_logo_2012.svg" alt="">
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="hidden">
-                        <a href="#page-top"></a>
+                        <a href="index.html"></a>
                     </li>
                     <li class="page-scroll">
+                        <a href="list.html">List</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="create.html">Create</a>
+                    </li>
+                    <li class="page-scroll" style="margin-left: 58px;">
                         <div class="cntr">
                             <div class="cntr-innr">
                                 <label class="search" for="inpt_search">
                                 <input id="inpt_search" type="text" />
                             </div>
                         </div>
-
 
 
                     </li>
@@ -76,33 +82,34 @@
         <!-- /.container-fluid -->
     </nav>
 
+
     <!-- About Section -->
+<!— About Section —>
     <section class="success" id="about">
-        <div class="container">
+        <div class="container">        
             <form action="/api/v1/start" method="post">
-              Write project name:
-              <input type="text" name="name" value="" />
-             
+            <div class="group">
+              <input type="text" name="name" value=""><span class="highlight"></span><span class="bar"></span>
+                <label>Project Name</label>
+            </div><br/>
+            <div class="group">
+                <input type="text" name="hashtags" value=""><span class="highlight"></span><span class="bar"></span>
+                    <label>Hashtag Filter</label>
+            </div><br/> 
               <br/>
-                Write hashtag filter:
-              <input type="text" name="hashtags" value="" />
-             
-              <br/>
 
-             
-              <input type="submit" value="Enviar" />
-            </form>
+              <button type="submit" class="button buttonBlue">Enviar
+                    <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+              </button>
 
-
-        <table>
-  
-            
+            </form>  
         </div>
     </section>
 
 
 
-  
+
+
 
     <!-- jQuery -->
     <script src="/vendor/jquery/jquery.min.js"></script>
@@ -124,6 +131,7 @@
     <script src="/js/vis.js"></script>
     <script src="/js/WorldCup2014.js"></script>
     <script src="/js/visGrafo.js"></script>
+    <script src="/js/form.js"></script>
 
 
 

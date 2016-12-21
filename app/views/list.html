@@ -14,6 +14,11 @@
     <!-- Bootstrap Core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Material Design Lite CSS -->
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
+    <!-- Material Design Lite Font Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
     <!-- Theme CSS -->
     <link href="/css/freelancer.min.css" rel="stylesheet">
     <link href="/css/vis-network.min.css" rel="stylesheet">
@@ -41,7 +46,7 @@
 
 <body id="page-top" class="index">
 
-    <!-- Navigation -->
+        <!-- Navigation -->
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -49,23 +54,29 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="#page-top">Twitter Hashtag Graph</a>
+                <a class="navbar-brand" href="index.html">Hashtag Graph</a>
+                <img class="image-navbar" style="width: 50px;height: 50px;" src="https://upload.wikimedia.org/wikipedia/en/archive/9/9f/20161107041729!Twitter_bird_logo_2012.svg" alt="">
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="hidden">
-                        <a href="#page-top"></a>
+                        <a href="index.html"></a>
                     </li>
                     <li class="page-scroll">
+                        <a href="list.html">List</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="create.html">Create</a>
+                    </li>
+                    <li class="page-scroll" style="margin-left: 58px;">
                         <div class="cntr">
                             <div class="cntr-innr">
                                 <label class="search" for="inpt_search">
                                 <input id="inpt_search" type="text" />
                             </div>
                         </div>
-
 
 
                     </li>
@@ -76,48 +87,63 @@
         <!-- /.container-fluid -->
     </nav>
 
+  
+
     <!-- About Section -->
     <section class="success" id="about">
         <div class="container">
-        <table  width="80%" >
+        <div clas="wrap">
 
         <% item.forEach(function(item,index){ %>
 
-            <tr>
-                <td><%=  item.name %></td> 
-                <td><%=  item.status %></td>
-                <td>
+            <article class="material-card">
+            <header>
+                <figure class="material-card-icon capamerica">
+                </figure>
+            <h1 class="material-card-title"><%=  item.name %></h1>
+            <div class="material-card-action">
+                <a href="#">
+            <i class="material-icons md-36">keyboard_arrow_right</i>
+                </a>
+            </div>
+            <div class="material-card-info">
+                <i class="material-icons">access_time</i>
+                <time><%=  item.status %></time>
+            </div>
+            </header>
+            <div class="material-card-content">
                 <%if (item.status == "run") { %>
 
-                <input type="submit" value="Stop"  
+                <input type="submit" class="btn btn-primary" value="Stop"  
                         onclick="window.location='/api/v1/stop/<%=  item.name %>';" />
                     
-                <input type="submit" value="Go to stats"  
+                <input type="submit" class="btn btn-primary" alue="Go to stats"  
                         onclick="window.location='/stats/<%=  item.name %>';" />
                     
                 <% } else{ %>
                 
-                <input type="submit" value="Go to graph"  
+                <input type="submit" class="btn btn-primary" value="Go to graph"  
                         onclick="window.location='/graph/<%=  item.name %>';" />
                     
-                <input type="submit" value="Go to stats"  
+                <input type="submit" class="btn btn-primary" value="Go to stats"  
                         onclick="window.location='/stats/<%=  item.name %>';" />
-                <input type="submit" value="Get graph gephi"  
+                <input type="submit" class="btn btn-primary" value="Get graph gephi"  
                         onclick="window.location='/gephi/<%=  item.name %>';" />
                     
                 
                 <% } %>
-                </td>      
-
-            </tr>     
+            </div>     
+   
       
 
         <% }) %>
-        </table>
+        </article>
+        </div>
 
 
-        <table>
-  
+
+
+
             
         </div>
     </section>
@@ -146,9 +172,13 @@
     <script src="/js/vis.js"></script>
     <script src="/js/WorldCup2014.js"></script>
     <script src="/js/visGrafo.js"></script>
+    <script src="/js/table.js"></script>
+
 
 
 
 </body>
 
 </html>
+
+
