@@ -63,7 +63,7 @@ exports.maxuser = function(req,res){
             console.log(items[0])
             res.send(items[0]);
         });
-    });
+    }); 
 
 
 };

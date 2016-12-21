@@ -9,9 +9,6 @@ app.set('views', __dirname);
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 app.use(express.static('views'));
-
-
-
 app.use(morgan('dev')); /* 'default','short','tiny','dev' */
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json());
@@ -96,24 +93,7 @@ app.get('/stats/:collection', function(request, response) {
 });
 
 
-
-
-
-//app.get('/api/v1/grafoprueba', function(request, response) {
-
-//  response.render('views/graphImages.html');
-
-//});
 //**********
-
-app.get('/api/v1/porzonaspruebas', function(request, response) {
-
-  response.render('views/byzone.html');
-
-});
-
-
-
 
 //CONTROLLER
 
