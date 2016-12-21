@@ -40,3 +40,43 @@ exports.findByZone = function(req, res) {
         });
     });
 };
+
+
+exports.tweetsbyZone = function(req,res){
+
+    console.log(req.params.collection)
+    db.collection(req.params.collection, function(err, collection) {
+        collection.aggregate([ {'$unwind': '$user.time_zone'},{'$group': {'_id': '$user.time_zone', 'count': {'$sum': 1}}}, { $sort : { 'count' : -1}}]).toArray(function(err, items) {
+            res.send(items);
+        });
+    });
+
+
+};
+
+
+exports.maxuser = function(req,res){
+
+    console.log(req.params.collection)
+    db.collection(req.params.collection, function(err, collection) {
+        collection.aggregate([ {'$unwind': '$user.screen_name'},{'$group': {'_id': '$user.screen_name', 'count': {'$sum': 1}}}, { $sort : { 'count' : -1}}]).toArray(function(err, items) {
+            res.send(items[0]);
+        });
+    });
+
+
+};
+
+
+exports.total = function(req,res){
+
+    console.log(req.params.collection)
+    db.collection(req.params.collection, function(err, collection) {
+         collection.count({}, function(err, count) {
+            //console.log(typeof(count))
+            res.send(count.toString());
+         })
+    });
+
+
+};

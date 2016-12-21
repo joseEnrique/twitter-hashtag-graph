@@ -88,7 +88,7 @@ app.get('/graph/:collection', function(request, response) {
 
 
 app.get('/stats/:collection', function(request, response) {
-		  response.render('views/graph.html', {
+		  response.render('views/stats.html', {
 		    titulo: 'Sysgraph'
 		  });
 
@@ -125,9 +125,13 @@ app.get('/api/v1/stop/:name', control.deleteCommand);
 
 
 
-
 app.get('/api/v1/:collection/zones', zones.findAll);
 app.get('/api/v1/:collection/zones/:node', zones.findByZone);
+app.get('/api/v1/stats/totalbyzone/:collection', zones.tweetsbyZone);
+app.get('/api/v1/stats/total/:collection', zones.total);
+app.get('/api/v1/stats/maxusers/:collection', zones.maxuser);
+
+
 
 app.listen(3000);
 console.log('Listening on port 3000...');
