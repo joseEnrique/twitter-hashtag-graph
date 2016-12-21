@@ -22,7 +22,7 @@
     <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-
+    <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -84,30 +84,52 @@
 
 
     <!-- About Section -->
-<!— About Section —>
     <section class="success" id="about">
-        <div class="container">        
-            <form action="/api/v1/start" method="post">
-            <div class="group">
-              <input type="text" name="name" value=""><span class="highlight"></span><span class="bar"></span>
-                <label>Project Name</label>
-            </div><br/>
-            <div class="group">
-                <input type="text" name="hashtags" value=""><span class="highlight"></span><span class="bar"></span>
-                    <label>Hashtag Filter</label>
-            </div><br/> 
-              <br/>
+        <div class="container">
+        <div clas="wrap">
 
-              <button type="submit" class="button buttonBlue">Enviar
-                    <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
-              </button>
+            <article class="material-card">
+            <header style="background: #FAFAFA">
+                <figure class="material-card-icon capamerica">
+                </figure>
+            <h1 class="material-card-title" style="color: #2aa9e0;font-weight: bold;">NOMBRE</h1>
 
-            </form>  
+            <div class="material-card-info">
+                <time id='total'></time>
+            </div>
+            </header>
+            <div class="material-card-content">
+
+            </div>
+
+      </article>
+
+        </div>
+
         </div>
     </section>
 
 
+    <script>
+      $( document ).ready(function() {
 
+        var request = $.ajax({
+          url: '/api/v1/stats/total/wintersolstice',
+          type:"GET",
+          contentType: "application/json",
+        });
+
+        request.done(function(data) {
+          console.log(data);
+          $('#total').text(data);
+
+
+        request.always(function(jqXHR, status, statusText) {
+          console.log(request.status);
+        });
+
+      });
+    </script>
 
 
 
