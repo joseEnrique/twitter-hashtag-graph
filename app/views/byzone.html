@@ -35,16 +35,25 @@
 //      var a = jQuery.parseJSON(data);
       for(x in data){
         var zone = data[x].time_zone;
-          $('#idZone').
-              append($('<button>').
-                  attr("class", "btn").
-                  attr("type", "button").
+          $('#opts').
+                append($('<option>').
                   attr("value", zone).
                   attr("onclick", "myFunction(this.value)").
                   text(zone)
-              );
-      }
+                );
+//              append($('<button>').
+//                  attr("class", "btn").
+//                  attr("type", "button").
+//                  attr("value", zone).
+//                  attr("onclick", "myFunction(this.value)").
+//                  text(zone)
 
+      }
+      $('#opts')
+        .on('change', function() {
+            var value = $(this).val();
+            myFunction(value);
+        });
 
     });
 
@@ -60,11 +69,13 @@
 
 <body>
 
-  <div id="idZone"></div>
+  <div id="idZone">
+    <select id="opts"></select>
+  </div>
   <div id="mynetwork"></div>
 <script>
   function myFunction(time_zone) {
-
+    console.log(time_zone);
     var nodes = [];
     var edges = [];
     var network = null;
