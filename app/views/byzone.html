@@ -82,7 +82,7 @@
     nodes.push({id: 0, font:{size:30}, size:35, label: time_zone, shape: 'square', image: null});
 
     var request2 = $.ajax({
-      url: '/api/v1/small/zones/'+time_zone,
+      url: '/api/v1/<%=  name %>/zones/'+time_zone,
 //          url: '/api/v1/small/zones/Tehran',
       type:"GET",
       contentType: "application/json",
